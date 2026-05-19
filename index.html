@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blackline Valet — Private Event Valet · North Scottsdale</title>
+<meta name="description" content="Private event valet service in North Scottsdale. Cinematic arrivals for weddings, estates, and corporate gatherings." />
+<meta name="keywords" content="valet scottsdale, private event valet, north scottsdale valet, wedding valet scottsdale, party valet arizona" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f0e8d4;
+    --paper-deep: #e6dcc4;
+    --ink: #14110d;
+    --ink-soft: #2a2620;
+    --line: rgba(20, 17, 13, 0.15);
+    --muted: rgba(20, 17, 13, 0.55);
+    --accent: #b8451f;
+    --display: 'Fraunces', 'Times New Roman', serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--paper); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::after {
+    content: none;
+  }
+
+  .container {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(245, 240, 230, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 16px 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    justify-self: start;
+  }
+  .logo em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .nav-center {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+  }
+  .nav-right {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .nav-phone {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 12px 20px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    min-height: 700px;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .hero-stage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-left {
+    position: relative;
+    padding: 120px 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 3;
+  }
+  .hero-right {
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+  }
+
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-scene svg { width: 100%; height: 100%; display: block; }
+
+  .hero-headline {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(56px, 8.5vw, 132px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    margin-top: 40px;
+  }
+  .hero-headline .line { display: block; overflow: hidden; }
+  .hero-headline .line span {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    animation: rise 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  .hero-headline .line:nth-child(1) span { animation-delay: 0.2s; }
+  .hero-headline .line:nth-child(2) span { animation-delay: 0.35s; }
+  .hero-headline .line:nth-child(3) span { animation-delay: 0.5s; }
+  .hero-headline .line:nth-child(4) span { animation-delay: 0.65s; }
+  .hero-headline em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  @keyframes rise {
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    opacity: 0;
+    animation: fade 1s ease 1s forwards;
+  }
+  @keyframes fade { to { opacity: 1; } }
+  .hero-meta-block {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .hero-meta-block .label {
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+  }
+
+  .hero-corner-tag {
+    position: absolute;
+    top: 120px;
+    left: 60px;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fade 1s ease 0.1s forwards;
+  }
+  .hero-corner-tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.4); }
+  }
+
+  .hero-marquee {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 0;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+    z-index: 4;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 40s linear infinite;
+    white-space: nowrap;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .marquee-track > div { display: flex; align-items: center; }
+  .marquee-track .sep {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 32px;
+    color: var(--accent);
+    font-style: normal;
+    font-size: 8px;
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 140px 0;
+    position: relative;
+    background: var(--paper);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .eyebrow .num {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(40px, 5.5vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  h2 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  /* MANIFESTO */
+  .manifesto {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .manifesto-text {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.2vw, 48px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .manifesto-text em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .manifesto-text .small {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    display: block;
+    margin-top: 40px;
+    max-width: 540px;
+    font-weight: 400;
+  }
+
+  /* PROCESS */
+  .process {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .process .eyebrow { color: #d97a4a; }
+  .process .eyebrow::before { background: #d97a4a; }
+  .process h2 em { color: #d97a4a; }
+  .process-intro {
+    max-width: 900px;
+    margin-bottom: 100px;
+  }
+  .process-intro p {
+    margin-top: 32px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(245, 242, 236, 0.65);
+    max-width: 580px;
+  }
+
+  .process-steps { position: relative; }
+  .process-step {
+    display: grid;
+    grid-template-columns: 100px 1fr 1.2fr;
+    gap: 60px;
+    padding: 60px 0;
+    border-top: 1px solid rgba(245, 242, 236, 0.15);
+    align-items: start;
+    transition: padding 0.3s ease;
+    position: relative;
+  }
+  .process-step:last-child { border-bottom: 1px solid rgba(245, 242, 236, 0.15); }
+  .process-step:hover { padding-left: 24px; }
+  .process-step::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+  .process-step:hover::after { transform: scaleY(1); }
+
+  .process-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 0.9;
+    color: #d97a4a;
+  }
+  .process-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .process-title .when {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(245, 242, 236, 0.5);
+    margin-bottom: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  .process-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(245, 242, 236, 0.7);
+  }
+  .process-desc strong {
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  /* SERVICES */
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 100px;
+  }
+  .services-header p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 480px;
+  }
+
+  .services-list { border-top: 1px solid var(--line); }
+  .service-row {
+    display: grid;
+    grid-template-columns: 80px 1.2fr 1fr auto;
+    gap: 60px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+    transition: padding 0.4s ease;
+    cursor: default;
+  }
+  .service-row:hover { padding-left: 24px; }
+  .service-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+  }
+  .service-title {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .service-title em { font-style: italic; color: var(--accent); }
+  .service-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .service-arrow {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s ease;
+  }
+  .service-row:hover .service-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* PROMISE */
+  .promise {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 120px 0;
+    overflow: hidden;
+  }
+  .promise-text {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(40px, 7vw, 120px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+  .promise-text .underline {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 12px;
+  }
+  .promise-attribution {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-top: 60px;
+    opacity: 0.8;
+  }
+
+  /* STATS */
+  .stats-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stat {
+    padding: 60px 40px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-big {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(72px, 10vw, 144px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+  .stat-big em {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-top: 16px;
+    max-width: 280px;
+    line-height: 1.5;
+  }
+
+  /* GUIDED FORM */
+  .booking {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 140px 0;
+    overflow: hidden;
+  }
+  .booking .eyebrow { color: #d97a4a; }
+  .booking .eyebrow::before { background: #d97a4a; }
+  .booking h2 em { color: #d97a4a; }
+
+  .booking-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 80px;
+  }
+  .booking-header .eyebrow { justify-content: center; }
+  .booking-header .eyebrow::before { display: none; }
+  .booking-header p {
+    margin-top: 32px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(245, 242, 236, 0.6);
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-stage {
+    max-width: 760px;
+    margin: 0 auto;
+    background: rgba(245, 242, 236, 0.03);
+    border: 1px solid rgba(245, 242, 236, 0.1);
+    padding: 60px;
+    position: relative;
+    min-height: 480px;
+  }
+
+  .form-progress {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .progress-bars { display: flex; gap: 6px; flex: 1; max-width: 240px; }
+  .progress-bar {
+    height: 2px;
+    flex: 1;
+    background: rgba(245, 242, 236, 0.15);
+    transition: background 0.3s;
+  }
+  .progress-bar.active { background: #d97a4a; }
+  .progress-step {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(245, 242, 236, 0.5);
+  }
+  .progress-step strong { color: #d97a4a; font-weight: 500; }
+
+  .form-step { display: none; }
+  .form-step.active {
+    display: block;
+    animation: stepIn 0.5s ease;
+  }
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-prompt {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .step-prompt em { font-style: italic; color: #d97a4a; }
+  .step-help {
+    font-size: 13px;
+    color: rgba(245, 242, 236, 0.55);
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .pill {
+    padding: 14px 22px;
+    border: 1px solid rgba(245, 242, 236, 0.2);
+    background: transparent;
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 100px;
+  }
+  .pill:hover {
+    border-color: #d97a4a;
+    color: #d97a4a;
+  }
+  .pill.selected {
+    background: #d97a4a;
+    border-color: #d97a4a;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .field { margin-bottom: 24px; }
+  .field label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #d97a4a;
+    margin-bottom: 10px;
+  }
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(245, 242, 236, 0.25);
+    padding: 12px 0;
+    color: var(--paper);
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+  }
+  .field input:focus,
+  .field textarea:focus { border-color: #d97a4a; }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(245, 242, 236, 0.25);
+    font-style: italic;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(245, 242, 236, 0.1);
+  }
+  .step-back {
+    background: transparent;
+    border: none;
+    color: rgba(245, 242, 236, 0.6);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+  }
+  .step-back:hover { color: var(--paper); }
+  .step-back.hidden { visibility: hidden; }
+  .step-next, .step-submit {
+    background: #d97a4a;
+    border: none;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    cursor: pointer;
+    padding: 16px 28px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .step-next:hover, .step-submit:hover { background: var(--paper); }
+  .step-next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .review-list {
+    display: grid;
+    gap: 0;
+    margin-bottom: 40px;
+  }
+  .review-item {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(245, 242, 236, 0.1);
+    align-items: baseline;
+  }
+  .review-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(245, 242, 236, 0.5);
+  }
+  .review-value {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--paper);
+  }
+  .review-edit {
+    background: transparent;
+    border: none;
+    color: #d97a4a;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .form-success.active {
+    display: block;
+    animation: stepIn 0.6s ease;
+  }
+  .form-success .checkmark {
+    width: 64px;
+    height: 64px;
+    border: 1px solid #d97a4a;
+    border-radius: 50%;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 32px;
+    color: #d97a4a;
+  }
+  .form-success h3 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 40px;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .form-success h3 em { font-style: italic; color: #d97a4a; }
+  .form-success p { color: rgba(245, 242, 236, 0.6); max-width: 400px; margin: 0 auto; }
+
+  /* FOOTER */
+  footer {
+    background: var(--paper);
+    padding: 80px 0 40px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-mark {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(80px, 16vw, 240px);
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+    margin-bottom: 60px;
+  }
+  .footer-mark em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .footer-col a, .footer-col p {
+    display: block;
+    font-family: var(--display);
+    font-size: 16px;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 6px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    .container { padding: 0 24px; }
+    nav { padding: 16px 24px; grid-template-columns: 1fr auto; gap: 16px; }
+    .nav-center { display: none; }
+    nav.scrolled { padding: 12px 24px; }
+    .nav-phone { display: none; }
+
+    .hero { height: auto; min-height: 100vh; }
+    .hero-stage { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 100px 24px 100px; }
+    .hero-corner-tag { left: 24px; }
+
+    section { padding: 80px 0; }
+    .manifesto-grid { grid-template-columns: 1fr; gap: 32px; }
+    .services-header { grid-template-columns: 1fr; gap: 32px; }
+    .service-row { grid-template-columns: 60px 1fr; gap: 20px; padding: 32px 0; }
+    .service-row .service-desc, .service-row .service-arrow { display: none; }
+    .process-step { grid-template-columns: 60px 1fr; gap: 24px; padding: 40px 0; }
+    .process-step .process-desc { grid-column: 2; margin-top: 8px; }
+    .process-num { font-size: 48px; }
+    .stats-block { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--line); padding: 40px 24px; }
+    .stat:last-child { border-bottom: none; }
+    .form-stage { padding: 32px 24px; }
+    .field-grid { grid-template-columns: 1fr; gap: 0; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .review-item { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
+  }
+</style>
+
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo">Blackline<em>/</em>Valet</div>
+  <div class="nav-center">N. Scottsdale · AZ</div>
+  <div class="nav-right">
+    <a href="tel:6234147558" class="nav-phone">(623) 414-7558</a>
+    <a href="#book" class="nav-cta">Request Quote</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-stage">
+
+```
+<div class="hero-left">
+  <div class="hero-corner-tag">Now booking · Spring 2026</div>
+
+  <h1 class="hero-headline">
+    <span class="line"><span>The driveway</span></span>
+    <span class="line"><span>is the <em>first</em></span></span>
+    <span class="line"><span>impression.</span></span>
+    <span class="line"><span><em>Make it count.</em></span></span>
+  </h1>
+
+  <div class="hero-meta">
+    <div class="hero-meta-block">
+      <div class="label">Serving</div>
+      <div>North Scottsdale</div>
+    </div>
+    <div class="hero-meta-block">
+      <div class="label">Specialty</div>
+      <div>Private Events</div>
+    </div>
+    <div class="hero-meta-block">
+      <div class="label">Reach</div>
+      <div><a href="tel:6234147558" style="color:inherit; text-decoration:none;">623·414·7558</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-right">
+  <div class="hero-scene">
+    <svg viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#14110d"/>
+          <stop offset="60%" stop-color="#2a1810"/>
+          <stop offset="100%" stop-color="#b8451f" stop-opacity="0.4"/>
+        </linearGradient>
+        <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a1410"/>
+          <stop offset="100%" stop-color="#0a0807"/>
+        </linearGradient>
+        <radialGradient id="lampGlow" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0%" stop-color="#d97a4a" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#d97a4a" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="podiumGlow" cx="0.5" cy="0.3" r="0.6">
+          <stop offset="0%" stop-color="#d97a4a" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#d97a4a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="800" height="700" fill="url(#skyGrad)"/>
+
+      <path d="M 0 580 L 80 540 L 160 560 L 240 510 L 340 540 L 420 500 L 520 530 L 620 510 L 720 540 L 800 520 L 800 700 L 0 700 Z" fill="#0a0807" opacity="0.9"/>
+      <path d="M 0 620 L 120 590 L 220 610 L 320 580 L 440 605 L 560 585 L 680 605 L 800 595 L 800 700 L 0 700 Z" fill="#000" opacity="0.7"/>
+
+      <rect y="700" width="800" height="300" fill="url(#floorGrad)"/>
+
+      <path d="M 320 700 L 100 1000 L 200 1000 L 380 700 Z" fill="#1f1812" opacity="0.6"/>
+      <path d="M 480 700 L 700 1000 L 600 1000 L 420 700 Z" fill="#1f1812" opacity="0.6"/>
+      <path d="M 380 700 L 200 1000 L 230 1000 L 390 700 Z" fill="#d97a4a" opacity="0.15"/>
+      <path d="M 420 700 L 600 1000 L 570 1000 L 410 700 Z" fill="#d97a4a" opacity="0.15"/>
+
+      <circle cx="220" cy="850" r="120" fill="url(#lampGlow)" opacity="0.7"/>
+      <circle cx="580" cy="850" r="120" fill="url(#lampGlow)" opacity="0.7"/>
+      <circle cx="320" cy="730" r="60" fill="url(#lampGlow)" opacity="0.5"/>
+      <circle cx="480" cy="730" r="60" fill="url(#lampGlow)" opacity="0.5"/>
+
+      <line x1="220" y1="850" x2="220" y2="780" stroke="#1a1410" stroke-width="3"/>
+      <circle cx="220" cy="780" r="5" fill="#d97a4a"/>
+      <line x1="580" y1="850" x2="580" y2="780" stroke="#1a1410" stroke-width="3"/>
+      <circle cx="580" cy="780" r="5" fill="#d97a4a"/>
+
+      <g opacity="0.95">
+        <circle cx="400" cy="640" r="120" fill="url(#podiumGlow)"/>
+        <rect x="385" y="620" width="30" height="50" fill="#0a0807"/>
+        <rect x="370" y="660" width="60" height="60" fill="#0a0807"/>
+        <line x1="400" y1="620" x2="400" y2="600" stroke="#d97a4a" stroke-width="1.5"/>
+        <rect x="385" y="585" width="30" height="18" fill="#d97a4a" opacity="0.9"/>
+      </g>
+
+      <rect x="40" y="540" width="120" height="60" fill="#0a0807" opacity="0.8"/>
+      <rect x="55" y="555" width="6" height="8" fill="#d97a4a" opacity="0.7"/>
+      <rect x="75" y="555" width="6" height="8" fill="#d97a4a" opacity="0.7"/>
+      <rect x="95" y="555" width="6" height="8" fill="#d97a4a" opacity="0.5"/>
+      <rect x="115" y="555" width="6" height="8" fill="#d97a4a" opacity="0.7"/>
+      <rect x="135" y="555" width="6" height="8" fill="#d97a4a" opacity="0.6"/>
+
+      <rect x="640" y="555" width="120" height="50" fill="#0a0807" opacity="0.85"/>
+      <rect x="655" y="568" width="6" height="8" fill="#d97a4a" opacity="0.6"/>
+      <rect x="675" y="568" width="6" height="8" fill="#d97a4a" opacity="0.8"/>
+      <rect x="695" y="568" width="6" height="8" fill="#d97a4a" opacity="0.7"/>
+      <rect x="715" y="568" width="6" height="8" fill="#d97a4a" opacity="0.6"/>
+
+      <circle cx="120" cy="80" r="1" fill="#f5f2ec" opacity="0.6"/>
+      <circle cx="320" cy="40" r="0.8" fill="#f5f2ec" opacity="0.5"/>
+      <circle cx="520" cy="120" r="1" fill="#f5f2ec" opacity="0.7"/>
+      <circle cx="680" cy="60" r="1.2" fill="#f5f2ec" opacity="0.6"/>
+      <circle cx="220" cy="180" r="0.8" fill="#f5f2ec" opacity="0.5"/>
+      <circle cx="620" cy="200" r="0.8" fill="#f5f2ec" opacity="0.5"/>
+      <circle cx="420" cy="100" r="1.2" fill="#f5f2ec" opacity="0.7"/>
+    </svg>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="hero-marquee">
+    <div class="marquee-track">
+      <div>
+        <span>Weddings</span><span class="sep">◆</span>
+        <span>Private estates</span><span class="sep">◆</span>
+        <span>Corporate galas</span><span class="sep">◆</span>
+        <span>Birthdays</span><span class="sep">◆</span>
+        <span>Holiday parties</span><span class="sep">◆</span>
+        <span>Fundraisers</span><span class="sep">◆</span>
+      </div>
+      <div>
+        <span>Weddings</span><span class="sep">◆</span>
+        <span>Private estates</span><span class="sep">◆</span>
+        <span>Corporate galas</span><span class="sep">◆</span>
+        <span>Birthdays</span><span class="sep">◆</span>
+        <span>Holiday parties</span><span class="sep">◆</span>
+        <span>Fundraisers</span><span class="sep">◆</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+      <div class="eyebrow reveal"><span class="num">01 /</span> The premise</div>
+      <div>
+        <div class="manifesto-text reveal">
+          Most valet feels like an <em>afterthought</em>. A folding table, a stack of keys, a kid in a polo.
+          We built Blackline because hosts deserve <em>better</em> — and because the difference between
+          a good party and a memorable one often lives in the first sixty seconds.
+
+```
+      <span class="small">
+        We're a small, intentionally local team based in North Scottsdale. We don't do stadium lots
+        or office parks. We do private events for people who care how their guests are received.
+      </span>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div class="process-intro">
+      <div class="eyebrow reveal"><span class="num">02 /</span> What to expect</div>
+      <h2 class="reveal">From inquiry to <em>last car out</em>.</h2>
+      <p class="reveal">
+        Booking a valet shouldn't feel like a chore. Here's exactly how it works from the moment
+        you fill out the form to the moment we lock up your driveway.
+      </p>
+    </div>
+
+```
+<div class="process-steps">
+  <div class="process-step reveal">
+    <div class="process-num">01</div>
+    <div class="process-title">
+      <span class="when">Within 24 hours</span>
+      You hear back.
+    </div>
+    <div class="process-desc">
+      We respond within one business day with a <strong>tailored quote</strong> based on guest count,
+      venue, and event duration. No bots. No copy-paste pricing. A real conversation with the owner.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">02</div>
+    <div class="process-title">
+      <span class="when">2 weeks out</span>
+      We plan the choreography.
+    </div>
+    <div class="process-desc">
+      A quick call or site visit to map arrival flow, identify the <strong>parking lot or street stretch</strong>
+      we'll stage, and coordinate with your planner, caterer, or venue. Nothing surprises us on the day.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">03</div>
+    <div class="process-title">
+      <span class="when">90 minutes before</span>
+      The stand goes up.
+    </div>
+    <div class="process-desc">
+      Uniformed crew arrives early. <strong>Podium, signage, cones, key board, lockbox</strong> — all set up
+      before the first guest pulls in. Your driveway looks staged on purpose.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">04</div>
+    <div class="process-title">
+      <span class="when">During the event</span>
+      We disappear into the background.
+    </div>
+    <div class="process-desc">
+      Cars retrieved in <strong>2 minutes on average</strong>. Tip jar handled how you want it.
+      Lead valet stays in radio contact for late arrivals, early departures, and anything unusual.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">05</div>
+    <div class="process-title">
+      <span class="when">After the last guest</span>
+      Driveway restored.
+    </div>
+    <div class="process-desc">
+      We break down the stand, sweep the entrance, and lock up any remaining keys with the host.
+      <strong>You wake up to a clean driveway</strong> and an event you didn't have to think about.
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="eyebrow reveal"><span class="num">03 /</span> What we run</div>
+        <h2 class="reveal">Three event <em>archetypes.</em></h2>
+      </div>
+      <p class="reveal">
+        We've tuned our staffing, equipment, and pacing around the events we see most in
+        North Scottsdale. If your event doesn't fit one of these, we'll build something for it.
+      </p>
+    </div>
+
+```
+<div class="services-list">
+  <div class="service-row reveal">
+    <div class="service-num">01</div>
+    <div class="service-title">Private parties &amp; <em>estates</em></div>
+    <div class="service-desc">
+      Backyard dinners, milestone birthdays, anniversary parties. 20 to 200 guests.
+      Discreet entry, fast retrieval, no clipboard energy.
+    </div>
+    <div class="service-arrow">→</div>
+  </div>
+
+  <div class="service-row reveal">
+    <div class="service-num">02</div>
+    <div class="service-title">Weddings &amp; <em>upscale</em> events</div>
+    <div class="service-desc">
+      Welcome dinners, ceremonies, receptions, after-parties. We coordinate with your planner
+      and stay through send-off so the night ends as cleanly as it began.
+    </div>
+    <div class="service-arrow">→</div>
+  </div>
+
+  <div class="service-row reveal">
+    <div class="service-num">03</div>
+    <div class="service-title">Corporate &amp; <em>mixed</em> events</div>
+    <div class="service-desc">
+      Client dinners, fundraisers, ribbon cuttings, holiday parties. Branded valet stand
+      available. Receipts and reconciliation provided on request.
+    </div>
+    <div class="service-arrow">→</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section class="promise">
+  <div class="container">
+    <div class="promise-text reveal">
+      Show up <span class="underline">early.</span><br>
+      Treat every key like it's <em>our own.</em><br>
+      Disappear when it's <em>over.</em>
+    </div>
+    <div class="promise-attribution reveal">— The Blackline operating principle</div>
+  </div>
+</section>
+
+<section style="padding: 80px 0;">
+  <div class="container">
+    <div class="stats-block">
+      <div class="stat reveal">
+        <div class="stat-big">100<em>%</em></div>
+        <div class="stat-label">Insured &amp; uniformed crew</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-big">~2<em>min</em></div>
+        <div class="stat-label">Average car retrieval time</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-big">24<em>hr</em></div>
+        <div class="stat-label">Quote response guarantee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="book">
+  <div class="container">
+    <div class="booking-header">
+      <div class="eyebrow reveal"><span class="num">04 /</span> Request a quote</div>
+      <h2 class="reveal">Tell us about your <em>event</em>.</h2>
+      <p class="reveal">Five quick steps. Should take under a minute. We'll have a tailored quote in your inbox within a day.</p>
+    </div>
+
+```
+<div class="form-stage reveal">
+  <div class="form-progress" id="formProgress">
+    <div class="progress-bars">
+      <div class="progress-bar active"></div>
+      <div class="progress-bar"></div>
+      <div class="progress-bar"></div>
+      <div class="progress-bar"></div>
+      <div class="progress-bar"></div>
+    </div>
+    <div class="progress-step"><strong id="stepNum">01</strong> / 05</div>
+  </div>
+
+  <form id="quoteForm" onsubmit="return false;">
+
+    <div class="form-step active" data-step="1">
+      <div class="step-prompt">What kind of <em>event</em> is it?</div>
+      <div class="step-help">Pick the closest fit. We'll fine-tune later.</div>
+      <div class="pill-grid" data-field="eventType">
+        <button type="button" class="pill" data-value="Private Party">Private party</button>
+        <button type="button" class="pill" data-value="Wedding">Wedding</button>
+        <button type="button" class="pill" data-value="Corporate">Corporate event</button>
+        <button type="button" class="pill" data-value="Birthday">Birthday / Milestone</button>
+        <button type="button" class="pill" data-value="Fundraiser">Fundraiser / Gala</button>
+        <button type="button" class="pill" data-value="Holiday">Holiday party</button>
+        <button type="button" class="pill" data-value="Other">Something else</button>
+      </div>
+    </div>
+
+    <div class="form-step" data-step="2">
+      <div class="step-prompt">When &amp; how <em>big</em>?</div>
+      <div class="step-help">Approximate is fine. We'll confirm closer to the date.</div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="eventDate">Event date</label>
+          <input type="date" id="eventDate" name="eventDate" />
+        </div>
+        <div class="field">
+          <label for="eventTime">Start time</label>
+          <input type="time" id="eventTime" name="eventTime" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Guest count</label>
+        <div class="pill-grid" data-field="guests">
+          <button type="button" class="pill" data-value="Under 25">Under 25</button>
+          <button type="button" class="pill" data-value="25-50">25–50</button>
+          <button type="button" class="pill" data-value="50-100">50–100</button>
+          <button type="button" class="pill" data-value="100-200">100–200</button>
+          <button type="button" class="pill" data-value="200+">200+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-step" data-step="3">
+      <div class="step-prompt">Where's the <em>venue</em>?</div>
+      <div class="step-help">Street address or venue name in North Scottsdale or nearby.</div>
+      <div class="field">
+        <label for="venue">Venue / address</label>
+        <input type="text" id="venue" name="venue" placeholder="e.g. 12345 N. Hayden Rd, Scottsdale" />
+      </div>
+      <div class="field">
+        <label>Budget range</label>
+        <div class="pill-grid" data-field="budget">
+          <button type="button" class="pill" data-value="Under $500">Under $500</button>
+          <button type="button" class="pill" data-value="$500-$1k">$500–$1,000</button>
+          <button type="button" class="pill" data-value="$1k-$2.5k">$1k–$2.5k</button>
+          <button type="button" class="pill" data-value="$2.5k-$5k">$2.5k–$5k</button>
+          <button type="button" class="pill" data-value="$5k+">$5,000+</button>
+          <button type="button" class="pill" data-value="Quote me">Not sure</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-step" data-step="4">
+      <div class="step-prompt">How do we <em>reach you</em>?</div>
+      <div class="step-help">We'll text or email — whichever you prefer.</div>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" placeholder="First &amp; last" />
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="(602) 555-0100" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="notes">Anything we should know? <span style="color: rgba(245,242,236,0.3); text-transform: none; letter-spacing: 0; font-family: var(--display); font-style: italic; font-size: 12px;">(optional)</span></label>
+        <textarea id="notes" name="notes" placeholder="Tight driveway, valet entrance on the side, dress code, etc."></textarea>
+      </div>
+    </div>
+
+    <div class="form-step" data-step="5">
+      <div class="step-prompt">Look <em>right</em>?</div>
+      <div class="step-help">Quick check before we send it over.</div>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+
+    <div class="step-nav">
+      <button type="button" class="step-back hidden" id="stepBack">← Back</button>
+      <button type="button" class="step-next" id="stepNext" disabled>Continue →</button>
+      <button type="button" class="step-submit" id="stepSubmit" style="display:none;">Send Request →</button>
+    </div>
+  </form>
+
+  <div class="form-success" id="formSuccess">
+    <div class="checkmark">✓</div>
+    <h3>Request <em>received.</em></h3>
+    <p>We'll be in touch within 24 hours with a tailored quote. For anything urgent, call or text <strong style="color:#d97a4a;">(623) 414-7558</strong>.</p>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-mark">Blackline<em>/Valet</em></div>
+
+```
+<div class="footer-grid">
+  <div class="footer-col">
+    <h4>Reach</h4>
+    <a href="tel:6234147558">(623) 414-7558</a>
+    <a href="sms:6234147558">Text us</a>
+    <a href="#book">Request quote</a>
+  </div>
+  <div class="footer-col">
+    <h4>Service Area</h4>
+    <p>North Scottsdale</p>
+    <p>Paradise Valley</p>
+    <p>Cave Creek &amp; Carefree</p>
+  </div>
+  <div class="footer-col">
+    <h4>Events</h4>
+    <p>Weddings</p>
+    <p>Private parties</p>
+    <p>Corporate</p>
+  </div>
+  <div class="footer-col">
+    <h4>Follow</h4>
+    <p style="color: var(--muted); font-style: italic; font-size: 13px;">Add IG &amp; email and I'll wire them in.</p>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  <div>© 2026 Blackline Valet · Insured &amp; Licensed in AZ</div>
+  <div>Made for North Scottsdale</div>
+</div>
+```
+
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('in'), i * 60);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const TOTAL_STEPS = 5;
+  let currentStep = 1;
+  const formData = {};
+
+  const steps = document.querySelectorAll('.form-step');
+  const bars = document.querySelectorAll('.progress-bar');
+  const stepNumEl = document.getElementById('stepNum');
+  const backBtn = document.getElementById('stepBack');
+  const nextBtn = document.getElementById('stepNext');
+  const submitBtn = document.getElementById('stepSubmit');
+
+  document.querySelectorAll('.pill-grid').forEach(grid => {
+    const field = grid.dataset.field;
+    grid.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        grid.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
+        pill.classList.add('selected');
+        formData[field] = pill.dataset.value;
+        validateStep();
+      });
+    });
+  });
+
+  document.querySelectorAll('input, textarea').forEach(input => {
+    input.addEventListener('input', () => {
+      formData[input.name] = input.value;
+      validateStep();
+    });
+  });
+
+  function validateStep() {
+    let valid = false;
+    switch (currentStep) {
+      case 1: valid = !!formData.eventType; break;
+      case 2: valid = !!formData.eventDate && !!formData.guests; break;
+      case 3: valid = !!formData.venue && !!formData.budget; break;
+      case 4: valid = !!formData.name && !!formData.phone && !!formData.email; break;
+      case 5: valid = true; break;
+    }
+    nextBtn.disabled = !valid;
+  }
+
+  function showStep(n) {
+    steps.forEach(s => s.classList.remove('active'));
+    document.querySelector('.form-step[data-step="' + n + '"]').classList.add('active');
+
+    bars.forEach((b, i) => {
+      b.classList.toggle('active', i < n);
+    });
+    stepNumEl.textContent = String(n).padStart(2, '0');
+
+    backBtn.classList.toggle('hidden', n === 1);
+    if (n === TOTAL_STEPS) {
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = '';
+      renderReview();
+    } else {
+      nextBtn.style.display = '';
+      submitBtn.style.display = 'none';
+      nextBtn.textContent = (n === TOTAL_STEPS - 1) ? 'Review →' : 'Continue →';
+    }
+    validateStep();
+  }
+
+  function renderReview() {
+    const list = document.getElementById('reviewList');
+    const items = [
+      ['Event', formData.eventType, 1],
+      ['Date', formData.eventDate ? new Date(formData.eventDate + 'T00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' }) : '—', 2],
+      ['Time', formData.eventTime || '—', 2],
+      ['Guests', formData.guests, 2],
+      ['Venue', formData.venue, 3],
+      ['Budget', formData.budget, 3],
+      ['Name', formData.name, 4],
+      ['Phone', formData.phone, 4],
+      ['Email', formData.email, 4],
+    ];
+    if (formData.notes) items.push(['Notes', formData.notes, 4]);
+
+    list.innerHTML = items.map(([label, value, step]) => 
+      '<div class="review-item">' +
+        '<div class="review-label">' + label + '</div>' +
+        '<div class="review-value">' + (value || '—') + '</div>' +
+        '<button type="button" class="review-edit" onclick="jumpToStep(' + step + ')">Edit</button>' +
+      '</div>'
+    ).join('');
+  }
+
+  window.jumpToStep = (n) => {
+    currentStep = n;
+    showStep(n);
+  };
+
+  nextBtn.addEventListener('click', () => {
+    if (currentStep < TOTAL_STEPS) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  });
+
+  backBtn.addEventListener('click', () => {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+
+  submitBtn.addEventListener('click', () => {
+    console.log('Blackline Valet — Quote Request:', formData);
+    document.getElementById('quoteForm').style.display = 'none';
+    document.getElementById('formProgress').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('active');
+  });
+
+  showStep(1);
+</script>
+
+</body>
+</html>
