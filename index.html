@@ -121,21 +121,23 @@
   .hero-stage {
     position: absolute;
     inset: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: block;
   }
   .hero-left {
     position: relative;
-    padding: 120px 60px 80px;
+    padding: 140px 40px 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
     z-index: 3;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   .hero-right {
-    position: relative;
-    background: var(--ink);
-    overflow: hidden;
+    display: none;
   }
 
   .hero-scene {
@@ -175,11 +177,12 @@
 
   .hero-meta {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-end;
-    gap: 40px;
+    gap: 60px;
     opacity: 0;
     animation: fade 1s ease 1s forwards;
+    text-align: center;
   }
   @keyframes fade { to { opacity: 1; } }
   .hero-meta-block {
@@ -196,19 +199,20 @@
   }
 
   .hero-corner-tag {
-    position: absolute;
-    top: 120px;
-    left: 60px;
+    position: relative;
+    top: auto;
+    left: auto;
     font-family: var(--mono);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.3em;
     color: var(--muted);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 12px;
     opacity: 0;
     animation: fade 1s ease 0.1s forwards;
+    align-self: center;
   }
   .hero-corner-tag::before {
     content: '';
@@ -577,8 +581,6 @@
     max-width: 900px;
     margin: 0 auto 80px;
   }
-  .booking-header .eyebrow { justify-content: center; }
-  .booking-header .eyebrow::before { display: none; }
   .booking-header p {
     margin-top: 32px;
     font-size: 15px;
@@ -904,10 +906,8 @@
     .nav-phone { display: none; }
 
     .hero { height: auto; min-height: 100vh; }
-    .hero-stage { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
     .hero-left { padding: 100px 24px 100px; }
-    .hero-corner-tag { left: 24px; }
+    .hero-meta { flex-direction: column; gap: 24px; align-items: center; }
 
     section { padding: 80px 0; }
     .manifesto-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1071,191 +1071,10 @@
   </div>
 </header>
 
-<section class="manifesto">
-  <div class="container">
-    <div class="manifesto-grid">
-      <div class="eyebrow reveal"><span class="num">01 /</span> The premise</div>
-      <div>
-        <div class="manifesto-text reveal">
-          Most valet feels like an <em>afterthought</em>. A folding table, a stack of keys, a kid in a polo.
-          We built Blackline because hosts deserve <em>better</em> — and because the difference between
-          a good party and a memorable one often lives in the first sixty seconds.
-
-```
-      <span class="small">
-        We're a small, intentionally local team based in North Scottsdale. We don't do stadium lots
-        or office parks. We do private events for people who care how their guests are received.
-      </span>
-    </div>
-  </div>
-</div>
-```
-
-  </div>
-</section>
-
-<section class="process">
-  <div class="container">
-    <div class="process-intro">
-      <div class="eyebrow reveal"><span class="num">02 /</span> What to expect</div>
-      <h2 class="reveal">From inquiry to <em>last car out</em>.</h2>
-      <p class="reveal">
-        Booking a valet shouldn't feel like a chore. Here's exactly how it works from the moment
-        you fill out the form to the moment we lock up your driveway.
-      </p>
-    </div>
-
-```
-<div class="process-steps">
-  <div class="process-step reveal">
-    <div class="process-num">01</div>
-    <div class="process-title">
-      <span class="when">Within 24 hours</span>
-      You hear back.
-    </div>
-    <div class="process-desc">
-      We respond within one business day with a <strong>tailored quote</strong> based on guest count,
-      venue, and event duration. No bots. No copy-paste pricing. A real conversation with the owner.
-    </div>
-  </div>
-
-  <div class="process-step reveal">
-    <div class="process-num">02</div>
-    <div class="process-title">
-      <span class="when">2 weeks out</span>
-      We plan the choreography.
-    </div>
-    <div class="process-desc">
-      A quick call or site visit to map arrival flow, identify the <strong>parking lot or street stretch</strong>
-      we'll stage, and coordinate with your planner, caterer, or venue. Nothing surprises us on the day.
-    </div>
-  </div>
-
-  <div class="process-step reveal">
-    <div class="process-num">03</div>
-    <div class="process-title">
-      <span class="when">90 minutes before</span>
-      The stand goes up.
-    </div>
-    <div class="process-desc">
-      Uniformed crew arrives early. <strong>Podium, signage, cones, key board, lockbox</strong> — all set up
-      before the first guest pulls in. Your driveway looks staged on purpose.
-    </div>
-  </div>
-
-  <div class="process-step reveal">
-    <div class="process-num">04</div>
-    <div class="process-title">
-      <span class="when">During the event</span>
-      We disappear into the background.
-    </div>
-    <div class="process-desc">
-      Cars retrieved in <strong>2 minutes on average</strong>. Tip jar handled how you want it.
-      Lead valet stays in radio contact for late arrivals, early departures, and anything unusual.
-    </div>
-  </div>
-
-  <div class="process-step reveal">
-    <div class="process-num">05</div>
-    <div class="process-title">
-      <span class="when">After the last guest</span>
-      Driveway restored.
-    </div>
-    <div class="process-desc">
-      We break down the stand, sweep the entrance, and lock up any remaining keys with the host.
-      <strong>You wake up to a clean driveway</strong> and an event you didn't have to think about.
-    </div>
-  </div>
-</div>
-```
-
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="services-header">
-      <div>
-        <div class="eyebrow reveal"><span class="num">03 /</span> What we run</div>
-        <h2 class="reveal">Three event <em>archetypes.</em></h2>
-      </div>
-      <p class="reveal">
-        We've tuned our staffing, equipment, and pacing around the events we see most in
-        North Scottsdale. If your event doesn't fit one of these, we'll build something for it.
-      </p>
-    </div>
-
-```
-<div class="services-list">
-  <div class="service-row reveal">
-    <div class="service-num">01</div>
-    <div class="service-title">Private parties &amp; <em>estates</em></div>
-    <div class="service-desc">
-      Backyard dinners, milestone birthdays, anniversary parties. 20 to 200 guests.
-      Discreet entry, fast retrieval, no clipboard energy.
-    </div>
-    <div class="service-arrow">→</div>
-  </div>
-
-  <div class="service-row reveal">
-    <div class="service-num">02</div>
-    <div class="service-title">Weddings &amp; <em>upscale</em> events</div>
-    <div class="service-desc">
-      Welcome dinners, ceremonies, receptions, after-parties. We coordinate with your planner
-      and stay through send-off so the night ends as cleanly as it began.
-    </div>
-    <div class="service-arrow">→</div>
-  </div>
-
-  <div class="service-row reveal">
-    <div class="service-num">03</div>
-    <div class="service-title">Corporate &amp; <em>mixed</em> events</div>
-    <div class="service-desc">
-      Client dinners, fundraisers, ribbon cuttings, holiday parties. Branded valet stand
-      available. Receipts and reconciliation provided on request.
-    </div>
-    <div class="service-arrow">→</div>
-  </div>
-</div>
-```
-
-  </div>
-</section>
-
-<section class="promise">
-  <div class="container">
-    <div class="promise-text reveal">
-      Show up <span class="underline">early.</span><br>
-      Treat every key like it's <em>our own.</em><br>
-      Disappear when it's <em>over.</em>
-    </div>
-    <div class="promise-attribution reveal">— The Blackline operating principle</div>
-  </div>
-</section>
-
-<section style="padding: 80px 0;">
-  <div class="container">
-    <div class="stats-block">
-      <div class="stat reveal">
-        <div class="stat-big">100<em>%</em></div>
-        <div class="stat-label">Insured &amp; uniformed crew</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-big">~2<em>min</em></div>
-        <div class="stat-label">Average car retrieval time</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-big">24<em>hr</em></div>
-        <div class="stat-label">Quote response guarantee</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="booking" id="book">
   <div class="container">
     <div class="booking-header">
-      <div class="eyebrow reveal"><span class="num">04 /</span> Request a quote</div>
+      <div class="eyebrow reveal"><span class="num">01 /</span> Request a quote</div>
       <h2 class="reveal">Tell us about your <em>event</em>.</h2>
       <p class="reveal">Five quick steps. Should take under a minute. We'll have a tailored quote in your inbox within a day.</p>
     </div>
@@ -1378,6 +1197,187 @@
 </div>
 ```
 
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+      <div class="eyebrow reveal"><span class="num">02 /</span> The premise</div>
+      <div>
+        <div class="manifesto-text reveal">
+          Most valet feels like an <em>afterthought</em>. A folding table, a stack of keys, a kid in a polo.
+          We built Blackline because hosts deserve <em>better</em> — and because the difference between
+          a good party and a memorable one often lives in the first sixty seconds.
+
+```
+      <span class="small">
+        We're a small, intentionally local team based in North Scottsdale. We don't do stadium lots
+        or office parks. We do private events for people who care how their guests are received.
+      </span>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div class="process-intro">
+      <div class="eyebrow reveal"><span class="num">03 /</span> What to expect</div>
+      <h2 class="reveal">From inquiry to <em>last car out</em>.</h2>
+      <p class="reveal">
+        Booking a valet shouldn't feel like a chore. Here's exactly how it works from the moment
+        you fill out the form to the moment we lock up your driveway.
+      </p>
+    </div>
+
+```
+<div class="process-steps">
+  <div class="process-step reveal">
+    <div class="process-num">01</div>
+    <div class="process-title">
+      <span class="when">Within 24 hours</span>
+      You hear back.
+    </div>
+    <div class="process-desc">
+      We respond within one business day with a <strong>tailored quote</strong> based on guest count,
+      venue, and event duration. No bots. No copy-paste pricing. A real conversation with the owner.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">02</div>
+    <div class="process-title">
+      <span class="when">2 weeks out</span>
+      We plan the choreography.
+    </div>
+    <div class="process-desc">
+      A quick call or site visit to map arrival flow, identify the <strong>parking lot or street stretch</strong>
+      we'll stage, and coordinate with your planner, caterer, or venue. Nothing surprises us on the day.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">03</div>
+    <div class="process-title">
+      <span class="when">90 minutes before</span>
+      The stand goes up.
+    </div>
+    <div class="process-desc">
+      Uniformed crew arrives early. <strong>Podium, signage, cones, key board, lockbox</strong> — all set up
+      before the first guest pulls in. Your driveway looks staged on purpose.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">04</div>
+    <div class="process-title">
+      <span class="when">During the event</span>
+      We disappear into the background.
+    </div>
+    <div class="process-desc">
+      Cars retrieved in <strong>2 minutes on average</strong>. Tip jar handled how you want it.
+      Lead valet stays in radio contact for late arrivals, early departures, and anything unusual.
+    </div>
+  </div>
+
+  <div class="process-step reveal">
+    <div class="process-num">05</div>
+    <div class="process-title">
+      <span class="when">After the last guest</span>
+      Driveway restored.
+    </div>
+    <div class="process-desc">
+      We break down the stand, sweep the entrance, and lock up any remaining keys with the host.
+      <strong>You wake up to a clean driveway</strong> and an event you didn't have to think about.
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="eyebrow reveal"><span class="num">04 /</span> What we run</div>
+        <h2 class="reveal">Three event <em>archetypes.</em></h2>
+      </div>
+      <p class="reveal">
+        We've tuned our staffing, equipment, and pacing around the events we see most in
+        North Scottsdale. If your event doesn't fit one of these, we'll build something for it.
+      </p>
+    </div>
+
+```
+<div class="services-list">
+  <div class="service-row reveal">
+    <div class="service-num">01</div>
+    <div class="service-title">Private parties &amp; <em>estates</em></div>
+    <div class="service-desc">
+      Backyard dinners, milestone birthdays, anniversary parties. 20 to 200 guests.
+      Discreet entry, fast retrieval, no clipboard energy.
+    </div>
+    <div class="service-arrow">→</div>
+  </div>
+
+  <div class="service-row reveal">
+    <div class="service-num">02</div>
+    <div class="service-title">Weddings &amp; <em>upscale</em> events</div>
+    <div class="service-desc">
+      Welcome dinners, ceremonies, receptions, after-parties. We coordinate with your planner
+      and stay through send-off so the night ends as cleanly as it began.
+    </div>
+    <div class="service-arrow">→</div>
+  </div>
+
+  <div class="service-row reveal">
+    <div class="service-num">03</div>
+    <div class="service-title">Corporate &amp; <em>mixed</em> events</div>
+    <div class="service-desc">
+      Client dinners, fundraisers, ribbon cuttings, holiday parties. Branded valet stand
+      available. Receipts and reconciliation provided on request.
+    </div>
+    <div class="service-arrow">→</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section class="promise">
+  <div class="container">
+    <div class="promise-text reveal">
+      Show up <span class="underline">early.</span><br>
+      Treat every key like it's <em>our own.</em><br>
+      Disappear when it's <em>over.</em>
+    </div>
+    <div class="promise-attribution reveal">— The Blackline operating principle</div>
+  </div>
+</section>
+
+<section style="padding: 80px 0;">
+  <div class="container">
+    <div class="stats-block">
+      <div class="stat reveal">
+        <div class="stat-big">100<em>%</em></div>
+        <div class="stat-label">Insured &amp; uniformed crew</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-big">~2<em>min</em></div>
+        <div class="stat-label">Average car retrieval time</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-big">24<em>hr</em></div>
+        <div class="stat-label">Quote response guarantee</div>
+      </div>
+    </div>
   </div>
 </section>
 
