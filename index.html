@@ -261,6 +261,95 @@
     to { transform: translateX(-50%); }
   }
 
+  /* HERO CTA BAND */
+  .hero-cta-band {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 100px 24px;
+    text-align: center;
+  }
+  .hero-cta-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-cta-eyebrow::before,
+  .hero-cta-eyebrow::after {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--muted);
+  }
+  .hero-cta-headline {
+    font-family: var(--display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+  .hero-cta-headline em { color: var(--accent); }
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    text-decoration: none;
+    padding: 22px 40px;
+    border: 1px solid var(--ink);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-button::after {
+    content: '→';
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 0;
+    transition: transform 0.3s ease;
+  }
+  .cta-button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--paper);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(20, 17, 13, 0.15);
+  }
+  .cta-button:hover::after { transform: translateX(6px); }
+  .cta-microcopy {
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+  .cta-microcopy a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+  }
+
+  @media (max-width: 960px) {
+    .hero-cta-band { padding: 60px 20px; }
+    .cta-button { padding: 18px 28px; font-size: 11px; letter-spacing: 0.25em; }
+  }
+
   /* SECTIONS */
   section {
     padding: 140px 0;
@@ -1071,6 +1160,17 @@
   </div>
 </header>
 
+<div class="hero-cta-band">
+  <div class="hero-cta-eyebrow reveal">Ready when you are</div>
+  <div class="hero-cta-headline reveal">
+    Let us handle the <em>driveway</em> so you can handle <em>everything else.</em>
+  </div>
+  <a href="#book" class="cta-button reveal">Run Your Parking</a>
+  <div class="cta-microcopy reveal">
+    Or call us directly · <a href="tel:6234147558">(623) 414-7558</a>
+  </div>
+</div>
+
 <section class="booking" id="book">
   <div class="container">
     <div class="booking-header">
@@ -1092,7 +1192,15 @@
     <div class="progress-step"><strong id="stepNum">01</strong> / 05</div>
   </div>
 
-  <form id="quoteForm" onsubmit="return false;">
+  <form id="quoteForm" name="quote-request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="return false;">
+    <!-- Netlify required hidden field -->
+    <input type="hidden" name="form-name" value="quote-request" />
+    <!-- Honeypot for spam -->
+    <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+    <!-- Hidden inputs that capture pill-selected values so they submit to Netlify -->
+    <input type="hidden" name="eventType" id="hidden-eventType" />
+    <input type="hidden" name="guests" id="hidden-guests" />
+    <input type="hidden" name="budget" id="hidden-budget" />
 
     <div class="form-step active" data-step="1">
       <div class="step-prompt">What kind of <em>event</em> is it?</div>
@@ -1421,6 +1529,15 @@
 </footer>
 
 <script>
+  // Force page to open at the top, ignoring any leftover URL hash
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) nav.classList.add('scrolled');
@@ -1455,6 +1572,9 @@
         grid.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
         pill.classList.add('selected');
         formData[field] = pill.dataset.value;
+        // Sync to hidden input for Netlify submission
+        const hidden = document.getElementById('hidden-' + field);
+        if (hidden) hidden.value = pill.dataset.value;
         validateStep();
       });
     });
@@ -1545,10 +1665,28 @@
   });
 
   submitBtn.addEventListener('click', () => {
-    console.log('Blackline Valet — Quote Request:', formData);
-    document.getElementById('quoteForm').style.display = 'none';
-    document.getElementById('formProgress').style.display = 'none';
-    document.getElementById('formSuccess').classList.add('active');
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    const form = document.getElementById('quoteForm');
+    const data = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+      document.getElementById('quoteForm').style.display = 'none';
+      document.getElementById('formProgress').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('active');
+    })
+    .catch((error) => {
+      submitBtn.textContent = 'Send Request →';
+      submitBtn.disabled = false;
+      alert('Something went wrong. Please call us directly at (623) 414-7558.');
+      console.error(error);
+    });
   });
 
   showStep(1);
